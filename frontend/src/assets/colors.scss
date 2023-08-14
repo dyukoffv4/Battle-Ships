@@ -1,0 +1,27 @@
+$light: (
+        main: #FFFFE0,
+        adv-1: #BDB76B,
+        adv-2: #20202F,
+        text: #222210,
+        text-1: #FFFFE0,
+        text-2: #222210,
+        warn-1: #5F9EA0,
+        warn-2: #DC143C,
+        warn-3: #EFDC3C,
+        alfa: #22222244
+);
+
+$dark: (
+        main: #1A1D26,
+        adv-1: #282D34,
+        adv-2: #F5DEB3,
+        text: #FFFFE0,
+        text-1: #F5DEB3,
+        text-2: #1A1D26,
+        warn-1: #5F9EA0,
+        warn-2: #DC143C,
+        warn-3: #EFDC3C,
+        alfa: #FFFFFFAA
+);
+
+$current_color: $dark;

@@ -1,0 +1,54 @@
+#!/usr/bin/env node
+
+/*
+  Server settings setup
+ */
+
+const createServer = require('http').createServer;
+const Server = require('socket.io').Server;
+const logic = require('../logic')
+const app = require('../app');
+
+const host = '127.0.0.1';
+const port = 3000;
+app.set('port', port);
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: 'http://localhost:8080'
+  }
+});
+
+/*
+  Socket.io setup
+ */
+
+io.on('connection', (socket) => {
+  console.log(`Client with id ${socket.id} connected`);
+  logic.players.push(socket.id); // Todo: change
+
+  socket.emit('message', "I'm server");
+  socket.on('message', (message) =>
+      console.log('Message: ', message)
+  );
+
+  socket.on('disconnect', () => {
+    clients.splice(clients.indexOf(socket.id), 1);
+    console.log(
+        `Client with id ${socket.id} disconnected`
+    );
+  });
+});
+
+io.on('')
+
+/*
+  Server starting
+ */
+
+httpServer.listen(port, host, () => {
+  let addr = httpServer.address();
+  let bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  console.log('Listening on ' + bind);
+});
